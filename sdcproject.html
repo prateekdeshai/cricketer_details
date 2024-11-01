@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Selection</title>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .login-box, .main-page {
+            max-width: 400px;
+            margin: auto;
+            display: none;
+        }
+        .login-box {
+            display: block;
+        }
+        .cricketer-details {
+            margin-top: 20px;
+            display: none;
+        }
+        .cricketer-image {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="login-box card p-4">
+    <h2 class="text-center">Login</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
+
+
+<div class="main-page card p-4">
+    <h2 class="text-center">Select a Cricketer</h2>
+    <form id="cricketerForm">
+        <div class="form-group">
+            <label for="cricketerSelect">Choose a Cricketer</label>
+            <select id="cricketerSelect" class="form-control" required>
+                <option value="" disabled selected>Select a cricketer</option>
+                <option value="virat">Virat Kohli</option>
+                <option value="sachin">Sachin Tendulkar</option>
+                <option value="dhoni">MS Dhoni</option>
+                <option value="rohit">Rohit Sharma</option>
+                <option value="hardik">Hardik Pandya</option>
+                <option value="bumrah">Jasprit Bumrah</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+
+    <div class="cricketer-details card p-3 mt-4">
+        <img id="cricketerImage" class="cricketer-image card-img-top" src="" alt="Cricketer Image">
+        <h4 id="cricketerName"></h4>
+        <p id="cricketerInfo"></p>
+    </div>
+</div>
+
+
+
+<script>
+    // Login Form Submission
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Hide login form and show main page
+        document.querySelector('.login-box').style.display = 'none';
+        document.querySelector('.main-page').style.display = 'block';
+    });
+
+    // Cricketer Form Submission
+    document.getElementById('cricketerForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const selectedCricketer = document.getElementById('cricketerSelect').value;
+        
+        const cricketerDetails = {
+            virat: {
+                name: "Virat Kohli",
+                info: "Virat Kohli is an Indian international cricketer who plays Test and ODI cricket for the Indian national team. A former captain in all formats of the game, Kohli retired from the T20I format following India's win at the 2024 T20 World Cup.",
+                imgSrc: "ViratKohli.jpg" 
+            },
+            sachin: {
+                name: "Sachin Tendulkar",
+                info: "Sachin Ramesh Tendulkar is an Indian former international cricketer who captained the Indian national team. He is widely regarded as one of the greatest batsmen in the history of cricket. ",
+                imgSrc: "SachinT.jpg"
+            },
+            dhoni: {
+                name: "MS Dhoni",
+                info: "Mahendra Singh Dhoni is an Indian professional cricketer who plays as a right-handed batter and a wicket-keeper. Widely regarded as one of the most prolific wicket-keeper batsmen and captains, he represented the Indian cricket team and was the captain of the side in limited overs formats from 2007 to 2017 and in test cricket from 2008 to 2014.",
+                imgSrc: "MSD.jpg"
+            },
+            rohit: {
+                name: "Rohit Sharma",
+                info: "Rohit Sharma is an Indian international cricketer who currently plays for and captains the India national cricket team in Test and One Day International matches.",
+                imgSrc: "rohit.jpg"
+            },
+            hardik: {
+                name: "Hardik Pandya",
+                info: "Hardik Himanshu Pandya is an Indian international cricketer who plays for the Indian cricket team. An all-rounder who bats right-handed in the middle-order and bowls right-arm fast-medium deliveries. He is currently one of the best all-rounders in the world in white-ball cricket.",
+                imgSrc: "pandya.jpg"
+            },
+            bumrah: {
+                name: "Jasprit Bumrah",
+                info: "Jasprit Bumrah is an Indian international cricketer who plays for the Indian cricket team in all formats of the game. A right-arm fast bowler with a unique bowling action, Bumrah is widely regarded as one of the best bowlers in the world and one of the greatest fast bowlers India has ever produced.",
+                imgSrc: "bumrah.jpg"
+            }
+        };
+
+        // Show selected cricketer details
+        if (cricketerDetails[selectedCricketer]) {
+            document.getElementById('cricketerName').textContent = cricketerDetails[selectedCricketer].name;
+            document.getElementById('cricketerInfo').textContent = cricketerDetails[selectedCricketer].info;
+            document.getElementById('cricketerImage').src = cricketerDetails[selectedCricketer].imgSrc;
+            document.querySelector('.cricketer-details').style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>
